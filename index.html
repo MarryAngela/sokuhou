@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sokuhou.vercel.app</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 3s infinite linear;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const box = document.querySelector('.box');
+            box.addEventListener('click', () => {
+                box.style.backgroundColor = getRandomColor();
+            });
+        });
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>
