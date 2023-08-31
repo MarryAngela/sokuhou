@@ -45,12 +45,14 @@
             var top = parseInt(letter.style.top);
             if (top > windowHeight) {
                 letter.style.top = "0px";
+                letter.style.left = Math.random() * windowWidth + "px";
             } else {
-                letter.style.top = top + Math.random() * 10 + "px";
+                letter.style.top = top + Math.random() * 5 + "px";
+                letter.style.left = parseInt(letter.style.left) + Math.random() * 5 - 2.5 + "px";
             }
             setTimeout(function() {
                 moveLetter(letter);
-            }, Math.random() * 20);
+            }, Math.random() * 10);
         }
 
         // 创建多个字母元素
@@ -62,7 +64,7 @@
 
         // 页面加载完成后开始创建字母元素
         window.onload = function() {
-            createMultipleLetters(100);
+            createMultipleLetters(500);
         };
     </script>
 </body>
