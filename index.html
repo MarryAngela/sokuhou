@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>sokuhou.vercel.app</title>
+    <title>单机游戏</title>
     <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
+        #game-container {
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            position: relative;
         }
-        
-        .box {
-            width: 100px;
-            height: 100px;
-            background-color: #ff0000;
+        #player {
+            width: 50px;
+            height: 50px;
+            background-color: red;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation: rotate 3s infinite linear;
-        }
-        
-        @keyframes rotate {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
         }
     </style>
 </head>
 <body>
-    <div class="box"></div>
+    <div id="game-container">
+        <div id="player"></div>
+    </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            const box = document.querySelector('.box');
-            box.addEventListener('click', () => {
-                box.style.backgroundColor = getRandomColor();
-            });
+        // 获取游戏容器和玩家元素
+        const gameContainer = document.getElementById('game-container');
+        const player = document.getElementById('player');
+
+        // 监听键盘按下事件
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+
+            // 根据按下的键盘按键进行相应操作
+            switch (key) {
+                case 'ArrowUp':
+                    movePlayer(0, -10);
+                    break;
+                case 'ArrowDown':
+                    movePlayer(0, 10);
+                    break;
+                case 'ArrowLeft':
+                    movePlayer(-10, 0);
+                    break;
+                case 'ArrowRight':
+                    movePlayer(10, 0);
+                    break;
+            }
         });
 
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
+        // 移动玩家元素的函数
+        function movePlayer(x, y) {
+            const playerRect = player.getBoundingClientRect();
+            const gameContainerRect = gameContainer.getBoundingClientRect();
+
+            // 确保玩家元素不会移动到游戏容器外部
+            if (playerRect.left + x >= gameContainerRect.left &&
+                playerRect.right + x <= gameContainerRect.right) {
+                player.style.left = playerRect.left + x + 'px';
             }
-            return color;
+            if (playerRect.top + y >= gameContainerRect.top &&
+                playerRect.bottom + y <= gameContainerRect.bottom) {
+                player.style.top = playerRect.top + y + 'px';
+            }
         }
     </script>
 </body>
