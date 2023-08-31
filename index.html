@@ -33,7 +33,8 @@
             letter.style.position = "absolute";
             letter.style.left = Math.random() * windowWidth + "px";
             letter.style.top = Math.random() * windowHeight + "px";
-            letter.style.color = getRandomBrightColor();
+            letter.style.color = "lime";
+            letter.style.fontSize = "20px";
             letter.className = "letter";
             document.body.appendChild(letter);
             moveLetter(letter);
@@ -45,21 +46,11 @@
             if (top > windowHeight) {
                 letter.style.top = "0px";
             } else {
-                letter.style.top = top + 1 + "px";
+                letter.style.top = top + Math.random() * 10 + "px";
             }
             setTimeout(function() {
                 moveLetter(letter);
             }, Math.random() * 20);
-        }
-
-        // 生成随机亮色
-        function getRandomBrightColor() {
-            var letters = "0123456789ABCDEF";
-            var color = "#";
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
         }
 
         // 创建多个字母元素
