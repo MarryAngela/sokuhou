@@ -47,12 +47,11 @@
                 letter.style.top = "0px";
                 letter.style.left = Math.random() * windowWidth + "px";
             } else {
-                letter.style.top = top + Math.random() * 5 + "px";
-                letter.style.left = parseInt(letter.style.left) + Math.random() * 5 - 2.5 + "px";
+                letter.style.top = top + 1 + "px";
             }
-            setTimeout(function() {
+            requestAnimationFrame(function() {
                 moveLetter(letter);
-            }, Math.random() * 10);
+            });
         }
 
         // 创建多个字母元素
