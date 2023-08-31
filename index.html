@@ -1,70 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hacker Letter Rain</title>
+    <title>sokuhou.vercel.app</title>
     <style>
         body {
             background-color: black;
+            color: green;
+            font-family: "Courier New", monospace;
+            font-size: 20px;
             overflow: hidden;
         }
 
         .letter {
             position: absolute;
-            color: lime;
-            font-size: 20px;
-            user-select: none;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
     <script>
-        // 获取窗口的宽度和高度
-        var windowWidth = window.innerWidth;
-        var windowHeight = window.innerHeight;
-
-        // 定义字母的集合
-        var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
-        letters = letters.split("");
-
-        // 创建字母元素并设置初始位置和样式
         function createLetter() {
-            var letter = document.createElement("span");
-            letter.innerHTML = letters[Math.floor(Math.random() * letters.length)];
-            letter.style.position = "absolute";
-            letter.style.left = Math.random() * windowWidth + "px";
-            letter.style.top = Math.random() * windowHeight + "px";
-            letter.style.color = "lime";
-            letter.style.fontSize = "20px";
-            letter.className = "letter";
+            const letter = document.createElement("span");
+            letter.classList.add("letter");
+            letter.style.left = Math.random() * 100 + "vw";
+            letter.style.animationDuration = Math.random() * 2 + 3 + "s";
+            letter.innerText = String.fromCharCode(Math.random() * 94 + 33);
             document.body.appendChild(letter);
-            moveLetter(letter);
+
+            setTimeout(() => {
+                letter.remove();
+            }, 5000);
         }
 
-        // 移动字母元素
-        function moveLetter(letter) {
-            var top = parseInt(letter.style.top);
-            if (top > windowHeight) {
-                letter.style.top = "0px";
-                letter.style.left = Math.random() * windowWidth + "px";
-            } else {
-                letter.style.top = top + 1 + "px";
-            }
-            requestAnimationFrame(function() {
-                moveLetter(letter);
-            });
-        }
-
-        // 创建多个字母元素
-        function createMultipleLetters(count) {
-            for (var i = 0; i < count; i++) {
-                createLetter();
-            }
-        }
-
-        // 页面加载完成后开始创建字母元素
-        window.onload = function() {
-            createMultipleLetters(500);
-        };
+        setInterval(createLetter, 100);
     </script>
 </body>
 </html>
