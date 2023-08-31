@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>美妙的星空</title>
+    <title>Hacker Page</title>
     <style>
         body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: black;
+            color: green;
+            font-family: "Courier New", monospace;
+            font-size: 20px;
             overflow: hidden;
         }
-        
-        .star {
+
+        .letter {
             position: absolute;
-            width: 5px;
-            height: 5px;
-            background-color: white;
-            animation: twinkle 1s infinite;
+            animation: fall 5s linear infinite;
         }
-        
-        @keyframes twinkle {
+
+        @keyframes fall {
             0% {
+                top: -50px;
                 opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
             }
             100% {
-                opacity: 1;
+                top: 100vh;
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div>
-        <!-- 星星 -->
-        <span class="star" style="top: 10%; left: 20%;"></span>
-        <span class="star" style="top: 30%; left: 50%;"></span>
-        <span class="star" style="top: 50%; left: 80%;"></span>
-        <span class="star" style="top: 70%; left: 40%;"></span>
-        <span class="star" style="top: 90%; left: 70%;"></span>
-        <!-- 添加更多星星 -->
-        <span class="star" style="top: 15%; left: 60%;"></span>
-        <span class="star" style="top: 35%; left: 90%;"></span>
-        <span class="star" style="top: 55%; left: 30%;"></span>
-        <span class="star" style="top: 75%; left: 60%;"></span>
-        <span class="star" style="top: 95%; left: 90%;"></span>
-        <!-- 添加更多星星 -->
-    </div>
+    <script>
+        function createLetter() {
+            const letter = document.createElement("span");
+            letter.classList.add("letter");
+            letter.style.left = Math.random() * 100 + "vw";
+            letter.style.animationDuration = Math.random() * 2 + 3 + "s";
+            letter.innerText = String.fromCharCode(Math.random() * 94 + 33);
+            document.body.appendChild(letter);
+
+            setTimeout(() => {
+                letter.remove();
+            }, 5000);
+        }
+
+        setInterval(createLetter, 100);
+    </script>
 </body>
 </html>
