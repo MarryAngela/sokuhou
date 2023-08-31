@@ -1,55 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>sokuhou.vercel.app</title>
+    <title>日本50音往下落</title>
     <style>
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
         }
         
-        .box {
-            width: 100px;
-            height: 100px;
-            background-color: #ff0000;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: rotate 3s infinite linear;
+        .falling-char {
+            animation: fall 2s linear infinite;
         }
         
-        @keyframes rotate {
+        @keyframes fall {
             0% {
-                transform: translate(-50%, -50%) rotate(0deg);
+                transform: translateY(-100vh);
             }
             100% {
-                transform: translate(-50%, -50%) rotate(360deg);
+                transform: translateY(100vh);
             }
         }
     </style>
 </head>
 <body>
-    <div class="box"></div>
-
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            const box = document.querySelector('.box');
-            box.addEventListener('click', () => {
-                box.style.backgroundColor = getRandomColor();
-            });
-        });
-
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-    </script>
+    <div>
+        <span class="falling-char">あ</span>
+        <span class="falling-char">い</span>
+        <span class="falling-char">う</span>
+        <span class="falling-char">え</span>
+        <span class="falling-char">お</span>
+        <!-- 其他的50音省略 -->
+    </div>
 </body>
 </html>
