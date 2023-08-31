@@ -1,83 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>日本50音往下落</title>
+    <title>宇宙画面</title>
     <style>
         body {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 5rem;
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            background-color: black;
             overflow: hidden;
         }
         
-        .falling-char {
+        .star {
             position: absolute;
-            animation: fall 2s linear infinite;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            animation: twinkle 1s infinite;
         }
         
-        @keyframes fall {
+        @keyframes twinkle {
             0% {
-                transform: translateY(-100%);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
             }
             100% {
-                transform: translateY(100vh);
+                opacity: 1;
             }
         }
         
-        .falling-char:nth-child(1) {
-            left: 10%;
-            animation-delay: 0s;
+        .planet {
+            position: absolute;
+            font-size: 2rem;
+            color: white;
+            animation: rotate 10s linear infinite;
         }
         
-        .falling-char:nth-child(2) {
-            left: 20%;
-            animation-delay: 0.2s;
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
-        .falling-char:nth-child(3) {
-            left: 30%;
-            animation-delay: 0.4s;
-        }
-        
-        /* 添加其他50音的位置和动画延迟 */
-        
-        .falling-char:nth-child(27) {
-            left: 40%;
-            animation-delay: 0.6s;
-        }
-        
-        .falling-char:nth-child(28) {
-            left: 50%;
-            animation-delay: 0.8s;
-        }
-        
-        /* 添加其他50音的位置和动画延迟 */
-        
-        .falling-char:nth-child(51) {
-            left: 60%;
-            animation-delay: 1s;
-        }
-        
-        .falling-char:nth-child(52) {
-            left: 70%;
-            animation-delay: 1.2s;
-        }
-        
-        /* 添加其他50音的位置和动画延迟 */
     </style>
 </head>
 <body>
     <div>
-        <span class="falling-char">あ</span>
-        <span class="falling-char">い</span>
-        <span class="falling-char">う</span>
-        <span class="falling-char">え</span>
-        <span class="falling-char">お</span>
-        <!-- 添加其他的50音 -->
+        <!-- 星星 -->
+        <span class="star" style="top: 10%; left: 20%;"></span>
+        <span class="star" style="top: 30%; left: 50%;"></span>
+        <span class="star" style="top: 50%; left: 80%;"></span>
+        <!-- 添加更多星星 -->
+        
+        <!-- 行星 -->
+        <span class="planet" style="top: 40%; left: 40%;">あ</span>
+        <span class="planet" style="top: 60%; left: 70%;">い</span>
+        <span class="planet" style="top: 20%; left: 90%;">う</span>
+        <!-- 添加更多行星 -->
     </div>
 </body>
 </html>
